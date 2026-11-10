@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шаурма №1 в Казани | Вкусно и Сытно</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --accent: #ff9800; /* Оранжевый цвет, стимулирующий аппетит */
+            --accent-hover: #e68a00;
+            --danger: #e53935; /* Для спец. кнопки */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Шапка */
+        header {
+            background-color: rgba(18, 18, 18, 0.95);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        /* Главный экран */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1561651823-34feb02250e4?q=80&w=1920&auto=format&fit=crop') center/cover;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: #f0f0f0;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: transform 0.2s, background 0.2s;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-location {
+            background-color: var(--accent);
+            color: #000;
+        }
+
+        .btn-special {
+            background-color: var(--danger);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(229, 57, 53, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(229, 57, 53, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0); }
+        }
+
+        /* Каталог */
+        .menu-section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--accent);
+            text-transform: uppercase;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .category-title {
+            font-size: 24px;
+            margin: 40px 0 20px 0;
+            color: #fff;
+            border-left: 5px solid var(--accent);
+            padding-left: 15px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .card-price {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--accent);
+            text-align: right;
+        }
+
+        /* Адрес и Карта */
+        .location-section {
+            background-color: #1a1a1a;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .address-text {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .map-container {
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid var(--accent);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+
+        /* Подвал */
+        footer {
+            background-color: #000;
+            text-align: center;
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Мобильная адаптация */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .hero p { font-size: 16px; }
+            nav { display: none; } /* Скрываем меню на телефонах для чистоты */
+            .btn { width: 100%; justify-content: center; }
+            .section-title { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка сайта -->
+    <header>
+        <div class="logo">Шаурма №1</div>
+        <nav>
+            <a href="#catalog">Меню</a>
+            <a href="#location">Контакты</a>
+        </nav>
+    </header>
+
+    <!-- Главный экран -->
+    <section class="hero">
+        <h1>Самая сочная шаурма в Казани!</h1>
+        <p>Готовим на открытом огне, используем только свежие продукты</p>
+        <div class="buttons-container">
+            <!-- Специальная кнопка -->
+            <button class="btn btn-special" onclick="showSpecialOffer()">
+                🔥 Специальное предложение
+            </button>
+            <!-- Кнопка перехода к карте -->
+            <a href="#location" class="btn btn-location">
+                📍 Где мы находимся
+            </a>
+        </div>
+    </section>
+
+    <!-- Каталог -->
+    <section id="catalog" class="menu-section">
+        <h2 class="section-title">Наше меню</h2>
+
+        <!-- Шаурма -->
+        <h3 class="category-title">Шаурма</h3>
+        <div class="grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1561651823-34feb02250e4?q=80&w=500&auto=format&fit=crop" alt="Шаурма классическая">
+                <div class="card-content">
+                    <div class="card-title">Шаурма классическая</div>
+                    <div class="card-price">250 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1561651823-34feb02250e4?q=80&w=500&auto=format&fit=crop" alt="Шаурма классическая с луком">
+                <div class="card-content">
+                    <div class="card-title">Шаурма классическая с луком</div>
+                    <div class="card-price">270 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1561651823-34feb02250e4?q=80&w=500&auto=format&fit=crop" alt="Шаурма с картошкой">
+                <div class="card-content">
+                    <div class="card-title">Шаурма с картошкой</div>
+                    <div class="card-price">270 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1561651823-34feb02250e4?q=80&w=500&auto=format&fit=crop" alt="Шаурма с халапеньо">
+                <div class="card-content">
+                    <div class="card-title">Шаурма с халапеньо</div>
+                    <div class="card-price">280 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1561651823-34feb02250e4?q=80&w=500&auto=format&fit=crop" alt="Шаурма с сыром">
+                <div class="card-content">
+                    <div class="card-title">Шаурма с сыром</div>
+                    <div class="card-price">280 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1561651823-34feb02250e4?q=80&w=500&auto=format&fit=crop" alt="Шаурма в сырном лаваше">
+                <div class="card-content">
+                    <div class="card-title">Шаурма в сырном лаваше</div>
+                    <div class="card-price">280 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1561651823-34feb02250e4?q=80&w=500&auto=format&fit=crop" alt="Шаурма с летним салатом">
+                <div class="card-content">
+                    <div class="card-title">Шаурма с летним салатом</div>
+                    <div class="card-price">300 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1561651823-34feb02250e4?q=80&w=500&auto=format&fit=crop" alt="Шаурма цезарь">
+                <div class="card-content">
+                    <div class="card-title">Шаурма цезарь</div>
+                    <div class="card-price">320 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1561651823-34feb02250e4?q=80&w=500&auto=format&fit=crop" alt="Шаурма двойное мясо">
+                <div class="card-content">
+                    <div class="card-title">Шаурма двойное мясо</div>
+                    <div class="card-price">350 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1561651823-34feb02250e4?q=80&w=500&auto=format&fit=crop" alt="Шаурма сборная">
+                <div class="card-content">
+                    <div class="card-title">Шаурма сборная</div>
+                    <div class="card-price">380 ₽</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Пицца -->
+        <h3 class="category-title">Пицца</h3>
+        <div class="grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=500&auto=format&fit=crop" alt="Пицца мясо с сыром">
+                <div class="card-content">
+                    <div class="card-title">Пицца мясо с сыром</div>
+                    <div class="card-price">210 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=500&auto=format&fit=crop" alt="Пицца мясо, сыр, маслины, салат">
+                <div class="card-content">
+                    <div class="card-title">Пицца мясо, сыр, маслины, салат</div>
+                    <div class="card-price">230 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=500&auto=format&fit=crop" alt="Пицца мясо, сыр, картошка">
+                <div class="card-content">
+                    <div class="card-title">Пицца мясо, сыр, картошка</div>
+                    <div class="card-price">240 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=500&auto=format&fit=crop" alt="Пицца мясо, сыр, салат, картошка">
+                <div class="card-content">
+                    <div class="card-title">Пицца мясо, сыр, салат, картошка</div>
+                    <div class="card-price">260 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=500&auto=format&fit=crop" alt="Пицца с летним салатом">
+                <div class="card-content">
+                    <div class="card-title">Пицца с летним салатом</div>
+                    <div class="card-price">260 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=500&auto=format&fit=crop" alt="Пицца сборная">
+                <div class="card-content">
+                    <div class="card-title">Пицца сборная</div>
+                    <div class="card-price">310 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=500&auto=format&fit=crop" alt="Добавка в пиццу">
+                <div class="card-content">
+                    <div class="card-title">Добавка в пиццу</div>
+                    <div class="card-price">20-30 ₽</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Выпечка -->
+        <h3 class="category-title">Выпечка</h3>
+        <div class="grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=500&auto=format&fit=crop" alt="Лепешка">
+                <div class="card-content">
+                    <div class="card-title">Лепешка 10.5шт</div>
+                    <div class="card-price">45/25 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=500&auto=format&fit=crop" alt="Самса говядина/курица">
+                <div class="card-content">
+                    <div class="card-title">Самса говядина/курица</div>
+                    <div class="card-price">130 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=500&auto=format&fit=crop" alt="Самса баранина">
+                <div class="card-content">
+                    <div class="card-title">Самса баранина</div>
+                    <div class="card-price">140 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=500&auto=format&fit=crop" alt="Самса тандырная">
+                <div class="card-content">
+                    <div class="card-title">Самса тандырная</div>
+                    <div class="card-price">150 ₽</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Вторые блюда -->
+        <h3 class="category-title">Вторые блюда</h3>
+        <div class="grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=500&auto=format&fit=crop" alt="Плов">
+                <div class="card-content">
+                    <div class="card-title">Плов</div>
+                    <div class="card-price">270 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=500&auto=format&fit=crop" alt="Сиптама">
+                <div class="card-content">
+                    <div class="card-title">Сиптама</div>
+                    <div class="card-price">320 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=500&auto=format&fit=crop" alt="Манты 4шт">
+                <div class="card-content">
+                    <div class="card-title">Манты 4шт</div>
+                    <div class="card-price">270 ₽</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Напитки и Соусы -->
+        <h3 class="category-title">Напитки и Соусы</h3>
+        <div class="grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?q=80&w=500&auto=format&fit=crop" alt="Кофе с собой">
+                <div class="card-content">
+                    <div class="card-title">Кофе с собой</div>
+                    <div class="card-price">40 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?q=80&w=500&auto=format&fit=crop" alt="Чай с лимоном">
+                <div class="card-content">
+                    <div class="card-title">Чай с лимоном</div>
+                    <div class="card-price">35 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?q=80&w=500&auto=format&fit=crop" alt="Кофе 3в1">
+                <div class="card-content">
+                    <div class="card-title">Кофе 3в1</div>
+                    <div class="card-price">40 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?q=80&w=500&auto=format&fit=crop" alt="Кофе черный">
+                <div class="card-content">
+                    <div class="card-title">Кофе черный</div>
+                    <div class="card-price">40 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?q=80&w=500&auto=format&fit=crop" alt="Компот с собой">
+                <div class="card-content">
+                    <div class="card-title">Компот с собой</div>
+                    <div class="card-price">70 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?q=80&w=500&auto=format&fit=crop" alt="Чесночный соус">
+                <div class="card-content">
+                    <div class="card-title">Соус Чесночный</div>
+                    <div class="card-price">40 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?q=80&w=500&auto=format&fit=crop" alt="Томатный соус">
+                <div class="card-content">
+                    <div class="card-title">Соус Томатный</div>
+                    <div class="card-price">40 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?q=80&w=500&auto=format&fit=crop" alt="Аджика">
+                <div class="card-content">
+                    <div class="card-title">Соус Аджика</div>
+                    <div class="card-price">40 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?q=80&w=500&auto=format&fit=crop" alt="Халапеньо">
+                <div class="card-content">
+                    <div class="card-title">Соус Халапеньо</div>
+                    <div class="card-price">40 ₽</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Сладости -->
+        <h3 class="category-title">Сладости</h3>
+        <div class="grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?q=80&w=500&auto=format&fit=crop" alt="Пахлава большая">
+                <div class="card-content">
+                    <div class="card-title">Пахлава большая</div>
+                    <div class="card-price">70 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?q=80&w=500&auto=format&fit=crop" alt="Пахлава 400гр">
+                <div class="card-content">
+                    <div class="card-title">Пахлава 400гр</div>
+                    <div class="card-price">250 ₽</div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?q=80&w=500&auto=format&fit=crop" alt="Пахлава 700гр">
+                <div class="card-content">
+                    <div class="card-title">Пахлава 700гр</div>
+                    <div class="card-price">350 ₽</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Локация -->
+    <section id="location" class="location-section">
+        <h2 class="section-title">Ждем вас в гости!</h2>
+        <p class="address-text">📍 г. Казань, Краснококшайская улица, 150/3</p>
+        <div class="map-container">
+            <!-- Встроенная карта (Яндекс или Google) по вашему адресу -->
+            <iframe src="https://yandex.ru/map-widget/v1/?text=Казань,%20Краснококшайская%20улица,%20150/3&z=16" width="100%" height="400" frameborder="0"></iframe>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <p>&copy; 2023 Шаурма №1. Все права защищены.</p>
+        <p>Вкусно, как дома. Готовим с любовью!</p>
+    </footer>
+
+    <!-- Скрипт для специальной кнопки -->
+    <script>
+        function showSpecialOffer() {
+            // Здесь можно настроить любое действие, например показать промокод
+            alert("🔥 СПЕЦИАЛЬНОЕ ПРЕДЛОЖЕНИЕ!\n\nПри заказе двух шаурм классических - соус в подарок!\nПокажите это сообщение на кассе.");
+        }
+    </script>
+</body>
+</html>
